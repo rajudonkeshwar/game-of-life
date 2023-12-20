@@ -19,6 +19,8 @@
         <thucydides.version>1.8.4</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
+		<docker.image.prefix>kammana</docker.image.prefix>
+		<sonar.host.url>http://44.204.12.178:9000/</sonar.host.url>
     </properties>
 
     <scm>
