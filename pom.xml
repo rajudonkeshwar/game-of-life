@@ -207,6 +207,27 @@
         </dependency>
     </dependencies>
 
+
+
+
+    
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexusRepo</id>
+			<url>http://52.91.118.117:8081/repository/artifact-snapshot/</url>
+		</snapshotRepository>
+			
+		<repository>
+			<id>nexusRepo</id>
+			<url>http://52.91.118.117:8081/repository/artifact-relesed/</url>
+		</repository>
+	</distributionManagement>
+    
+
+
+
+    
+
     <modules>
         <module>gameoflife-build</module>
         <module>gameoflife-core</module>
