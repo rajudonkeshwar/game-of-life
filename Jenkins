@@ -34,7 +34,7 @@ pipeline {
 		stage('testing the code using sonar tool') {
 	            steps {
 	                echo 'testing the code using sonar tool'
-			sh 'mvn clean sonar:sonar'
+			sh 'mvn clean sonar:sonar install'
 					
 	            }
 	        }
