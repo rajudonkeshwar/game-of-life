@@ -1,75 +1,50 @@
-  pipeline {
-    agent any
-
-
-		stages{
-	
-	
-	
-        stage('cloning from github') {
-            steps {
-                echo 'cloning of code from git hub'
-				git branch: 'main', url: 'https://github.com/rajudonkeshwar/game-of-life.git'
-            }
-        }
-		
-		
-		
-		
-		
-		
+pipeline {
+	agent any
+	stages{	
+		stage('cloning from github') {
+	            steps {
+	                echo 'cloning of code from git hub'
+					git branch: 'main', url: 'https://github.com/rajudonkeshwar/game-of-life.git'
+	            }
+	        }
+				
 		stage('FINDING THE JAVA VERSION') {
-            steps {
-                echo 'FIND THE JAVA VERSION'
-				java --version
+	            steps {
+	                echo 'FIND THE JAVA VERSION'
+					java --version
+					
+	            }
+	        }
 				
-            }
-        }
-		
-		
-		
-		
-		
-        stage('packaging the code using maven tool') {
-            steps {
-                echo 'packaging the code using maven tool'
-				sh 'mvn clean package'
-				
-            }
-        }
-		
-		
-		
+	        stage('packaging the code using maven tool') {
+	            steps {
+	                echo 'packaging the code using maven tool'
+					sh 'mvn clean package'
+					
+	            }
+	        }
+			
 		stage('testing the code using sonar tool') {
-            steps {
-                echo 'testing the code using sonar tool'
-				sh 'mvn clean sonar:sonar'
-				
-            }
-        }
-		
-		
-		
+	            steps {
+	                echo 'testing the code using sonar tool'
+					sh 'mvn clean sonar:sonar'
+					
+	            }
+	        }
+			
 		stage('upload the code in to nexus tool') {
-            steps {
-                echo 'upload the code in to nexus tool'
-				sh 'mvn clean deploy'
-				
-            }
-        }
-		
-		
-		
-		
-        stage('deploying in to github') {
-            steps {
-                echo 'deploying the code to the tomcat server'
-				deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.196.242.102:8081/')], contextPath: 'webapp1	', war: '**/*.war'
-            }
-        }
-	
-
-
-	
-    }
+	            steps {
+	                echo 'upload the code in to nexus tool'
+					sh 'mvn clean deploy'
+					
+	            }
+	        }
+			
+	        stage('deploying in to github') {
+	            steps {
+	                echo 'deploying the code to the tomcat server'
+					deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.196.242.102:8081/')], contextPath: 'webapp1	', war: '**/*.war'
+	            }
+	        }	
+	    }
 }
