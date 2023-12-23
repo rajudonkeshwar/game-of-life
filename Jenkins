@@ -4,14 +4,14 @@ pipeline {
 		stage('cloning from github') {
 	            steps {
 	                echo 'cloning of code from git hub'
-					git branch: 'main', url: 'https://github.com/rajudonkeshwar/game-of-life.git'
+			git branch: 'master', url: 'https://github.com/rajudonkeshwar/game-of-life.git'
 	            }
 	        }
 				
 		stage('FINDING THE JAVA VERSION') {
 	            steps {
 	                echo 'FIND THE JAVA VERSION'
-					sh 'java -version'
+			sh 'java -version'
 					
 	            }
 	        }
@@ -19,7 +19,7 @@ pipeline {
 	        stage('packaging the code using maven tool') {
 	            steps {
 	                echo 'packaging the code using maven tool'
-					sh 'mvn clean package'
+			sh 'mvn clean package'
 					
 	            }
 	        }
@@ -27,7 +27,7 @@ pipeline {
 		stage('testing the code using sonar tool') {
 	            steps {
 	                echo 'testing the code using sonar tool'
-					sh 'mvn clean sonar:sonar'
+			sh 'mvn clean sonar:sonar'
 					
 	            }
 	        }
@@ -35,7 +35,7 @@ pipeline {
 		stage('upload the code in to nexus tool') {
 	            steps {
 	                echo 'upload the code in to nexus tool'
-					sh 'mvn clean deploy'
+			sh 'mvn clean deploy'
 					
 	            }
 	        }
@@ -43,7 +43,7 @@ pipeline {
 	        stage('deploying in to github') {
 	            steps {
 	                echo 'deploying the code to the tomcat server'
-					deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.196.242.102:8081/')], contextPath: 'webapp1	', war: '**/*.war'
+			deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.196.242.102:8081/')], contextPath: 'webapp1	', war: '**/*.war'
 	            }
 	        }	
 	    }
