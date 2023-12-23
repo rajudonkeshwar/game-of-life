@@ -21,7 +21,7 @@
 		stage('FINDING THE JAVA VERSION') {
             steps {
                 echo 'FIND THE JAVA VERSION'
-				java -version
+				java --version
 				
             }
         }
