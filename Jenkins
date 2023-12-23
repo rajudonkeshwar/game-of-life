@@ -1,5 +1,12 @@
 pipeline {
 	agent any
+
+	tools {
+        jdk 'jdk1.8.0_391'
+    	}
+
+
+
 	stages{	
 		stage('cloning from github') {
 	            steps {
